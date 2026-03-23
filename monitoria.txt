@@ -1,0 +1,26 @@
+
+
+espera ocupada --> ocupa a trhead 
+
+-->loops
+--> pessiam pra escalabulidade - tickets para cada uma e fazer chacagwme de tdos os valores
+--> starvation
+
+
+-->Test and set (atômica)
+    1 - se o recuros estiver sendo utilizado 
+    0 - se não
+
+--> Exchange (atômica)
+    troca de valor de uma variavel com o de um registrador- lock- 
+
+
+Semáforos
+
+Produto e consumidor
+
+Mutex --> a thrad se torna dona do Mutex
+    deadlock vai da implementação
+    lock()
+    unlock()
+    quando trabalhando com dois tenho que destravar na ordem contrária
