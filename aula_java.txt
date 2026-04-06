@@ -1,0 +1,27 @@
+ synchronized --> como se fosse monitor, gerenciar acesso ao metodo e ao objeto
+
+pra int não precisa, ele ja mantém a consistência
+
+
+synchronized void debitar
+synchronized void creditar
+
+ouu
+
+void m () {
+  jkjsdlkjfls
+  synchronized(this){
+    parte critica
+  }
+}
+
+- permite criação de threads
+
+-subclasses de thread herda de thread e redefine run
+
+
+  classe conta que implemnrata credito e debito
+
+  pra mexer nas threads crio uma classe crédito e uma clsse débito
+
+  
