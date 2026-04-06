@@ -15,13 +15,21 @@ void m () {
   }
 }
 
-- permite criação de threads
+Criação de threads
 
 -subclasses de thread herda de thread e redefine run
+-classe conta que implemnrata credito e debito
+-pra mexer nas threads crio uma classe crédito e uma clsse débito
+
+Herança múltipla  -> implementação de Interface
 
 
-  classe conta que implemnrata credito e debito
+Sincronização com wait
+while -> wait , não ta na região crítica ( o wait so funciona dentro de um synchronized)
 
-  pra mexer nas threads crio uma classe crédito e uma clsse débito
+notifyAll--> acorda todso os processos que estavam esperando 
+* notify --> não garante que vai acordar o processo que tá esperando a mais tempo
+para não acontecer starvation é melhor usar notifyall
+
 
   
