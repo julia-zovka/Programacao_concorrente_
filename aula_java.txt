@@ -17,9 +17,10 @@ void m () {
 
 Criação de threads
 
--subclasses de thread herda de thread e redefine run
--classe conta que implemnrata credito e debito
--pra mexer nas threads crio uma classe crédito e uma clsse débito
+-subclasses de thread herda de thread e redefine run, subcalsees debito e credito
+-classe conta que implemnrata creditar e debitar
+- subclasses credito e debito usam os metodso creditar e debitar pra realizar as operaco es no run, run-> conta.creditar
+
 
 Herança múltipla  -> implementação de Interface
 
