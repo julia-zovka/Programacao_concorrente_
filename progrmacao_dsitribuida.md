@@ -64,13 +64,9 @@ end Buffer;
 
 task body Buffer is -->accepting task
 begin
-
     accept Append(I:in Integer) do
-
-        ..corpo do accept
-
+       ..corpo do accept
     end Append;
-
 end Buffer;
 
 
