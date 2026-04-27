@@ -52,21 +52,29 @@ Rendevouz
 3. accepting task é a dona do rendevouz 
 4. calling task tem que saber a identidade da accepting task e o nome do canal rendevouz
 
-modelo assimétrico --> programação de servidores
+modelo assimétrico(identificação) --> programação de servidores
 
 task = specification e body
 
 task Buffer is
+
+
 entry Append (I: in Integer);
+
+
 entry Take (I: out Integer);
+
+
 end Buffer;
 
 
 task body Buffer is -->accepting task
 begin
+
     accept Append(I:in Integer) do
        ..corpo do accept
     end Append;
+
 end Buffer;
 
 
