@@ -55,27 +55,21 @@ Rendevouz
 modelo assimétrico(identificação) --> programação de servidores
 
 task = specification e body
-
+```
 task Buffer is
-
-
 entry Append (I: in Integer);
-
-
 entry Take (I: out Integer);
-
-
 end Buffer;
+````
 
-
+````
 task body Buffer is -->accepting task
 begin
-
     accept Append(I:in Integer) do
        ..corpo do accept
     end Append;
-
 end Buffer;
-
-
+````
+````
 Buffer.Append(I); --> calling task
+````
