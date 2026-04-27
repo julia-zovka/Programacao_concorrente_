@@ -73,3 +73,69 @@ end Buffer;
 ````
 Buffer.Append(I); --> calling task
 ````
+
+Select edntro do body, pra criar condições para escolher que chamada vai receber
+
+````
+task body Buffer is ...
+begin loop
+select
+when Count < N =>
+accept Append(I:in Integer) do
+B(In_Ptr) := I;
+end Append;
+Count := Count + 1;
+In_Ptr := (In_Ptr + 1) mod N;
+or
+when Count > 0 =>
+accept Take(I: out Integer) do
+I := B(Out_Ptr);
+end Take;
+Count := Count - 1;
+Out_Ptr := (Out_Ptr + 1) mod N;
+end select;
+end loop;
+end Buffer;
+````
+- else ...
+- delay  ...
+- terminate
+
+accept aninhados resolve o problema de ordem
+
+
+criar task dinamicamente
+
+
+** Ada e Go **
+
+ada usa entries e go canais na definição da task
+
+ada usa entry(definição) e accept(body) nas calling e accepting tasks
+
+
+Ada
+````
+task Server is
+entry GetData(Item : out Integer);
+end Server;
+task body Server is
+begin
+accept GetData(Item : out Integer) do
+Item := 42; -- Rendezvous action
+end GetData;
+end Server;
+````
+Go
+````
+package main
+import "fmt"
+func main() {// canal é o ponto de rendezvous
+getData := make(chan int)
+go func() { // equivalente à task Server, quando chamada
+getData <- 42 // equivalente ao Accept
+}()
+data := <-getData // Cliente bloqueia até servidor enviar
+fmt.Println(data)
+}
+````
