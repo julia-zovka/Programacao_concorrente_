@@ -66,11 +66,22 @@ func main() {
 	// Start the Buffer task (goroutine)
 	go Buffer(5, appendChan, takeReq)
 	// Simulate a Producer
-	go func() {
-		for i := 1; i <= 10; i++ {
+	go func() {//thread
+		for i := 1; i <= 9; i++ {
+			fmt.Println("[Produtor A Enviando:", i)
 			appendChan <- i
 		}
 	}()
+
+	// PRODUTOR B
+    go func() {
+        for i := 10; i <= 15; i++ {
+            fmt.Println("[Produtor B] Enviando:", i)
+            appendChan <- i
+        }
+    }()
+
+
 	// Simulate a Consumer
 	for i := 1; i <= 10; i++ {
 		reply := make(chan int)
