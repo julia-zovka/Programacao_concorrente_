@@ -27,12 +27,14 @@ recebimento = com ou sem bloqueio
     Quadro de avisos - dispensa a identificação
 
 4. Fluxo de dados
+
     Unidirecional - comunicação assíncrona
    
     Bidirecionaç - comunicação síncrona
 
 
 6. Criação de Processos
+
     Estática (embarcados)
    
     Dinâmica- uso dinamico dos recurso  e balanceamento de carga
