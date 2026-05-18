@@ -24,8 +24,13 @@ signal all no end write
 
 
 
-6-
+6- codigo em  cponcorrente
 ausencia de starvation e exclusão mutua para variaves compartilahda
 ausencia de deadlock e -----livelock
 
+
+7- linda, vantagens e desvantagens
+
+
+8- quais sistemas s[incronos e assincronos]
 codigo em c java ou eerlang
