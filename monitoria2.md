@@ -18,7 +18,7 @@ scheduler m:n - escalonadoer de threds para go routines
 canais unidirecionias ou bidirecionais
 
 
-envio com cannal com buffer náo bloqueia mesmo que esoture a capacadidade do buffer
+envio com cannal com buffer não bloqueia até que estore a capacadidade do buffer
 
 
 ## Linda
