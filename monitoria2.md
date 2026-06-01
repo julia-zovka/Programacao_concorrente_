@@ -53,7 +53,7 @@ canal ! x ( output)
 
 criação estática de processos 
 
-
+sincronaaa
 
 ## Erlang
 
