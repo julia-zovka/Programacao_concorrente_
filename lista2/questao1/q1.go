@@ -1,57 +1,45 @@
 package main
+
 import (
-    "fmt"
-    "time"
-	"sync"
+	"fmt"
+	"time"
 )
 
-//15 chamos
-//buffer 10 lugares
-//3 wor
-
-func main (){
-	var wg sync.WaitGroup
+func main() {
+	
 
 	type Chamado struct {
-		ID int
-		Tipo String
-	}
-	ch := make(chan Chamado,10)// buffer de 10 chamados
+		ID   int
+		Tipo string
+    
+	ch := make(chan Chamado, 10)   
+	done := make(chan bool)          // Canal para os workers avisarem que terminaram
 
-	go  func(){
+	go func() {
 		tipos := []string{"Problema em laboratório", "Falha na rede", "Dúvida em sistemas acadêmicos"}
 
-		for i:= 0;i<15;i++{
+		for i := 0; i < 15; i++ {
 			tipoAtual := tipos[i%3]
-
-			ch <- Chamado{ID:i, Tipo:tipoAtual}
+			ch <- Chamado{ID: i, Tipo: tipoAtual}
 			fmt.Printf("[Helpdesk] Chamado #%d criado\n", i)
-
 		}
-		close(ch)		
-	}
+		close(ch)
+	}() 
 
-
-	///workers
-	for i := 1; i <=3; i++ {
-		wg.Add(1)
-		
-		// Inicia cada atendente em uma goroutine
+	numWorkers := 3
+	for i := 1; i <= numWorkers; i++ {
 		go func(idAtendente int) {
-			// O loop range esvazia o canal até ele ser fechado pelo produtor
 			for chamado := range ch {
-				// Simula o tempo de atendimento
-				time.Sleep(time.Millisecond * 300) 
-				
-				// Print exatamente como exigido no enunciado
+				time.Sleep(time.Millisecond * 300)
 				fmt.Printf("Atendente %d resolveu chamado %d (tipo %s)\n", idAtendente, chamado.ID, chamado.Tipo)
 			}
-			wg.Done()
-		}(i) // Passa o ID do atendente como parâmetro para evitar problemas de concorrência com a variável 'i'
+			done <- true
+		}(i)
 	}
 
-	wg.Wait()
+	for i := 0; i < numWorkers; i++ {
+		<-done // Bloqueia e espera o próximo worker terminar
+	}
+
 	fmt.Println("Sistema encerrado com sucesso.")
-
-
 }
