@@ -24,7 +24,7 @@ void *aluno(void *arg) {
     free(d); 
 
     printf("X---Aluno %d chegou no RU e está esperando mesa...\n", id);
-    sem_wait(&(r->mesas)); 
+    sem_wait(&(r->mesas)); // p 
     printf("Y---Aluno %d SENTOU para comer.\n", id);
     // comer
     usleep(500000); 
