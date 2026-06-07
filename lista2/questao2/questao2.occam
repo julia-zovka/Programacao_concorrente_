@@ -1,0 +1,42 @@
+
+PROC produtor (CHAN OF BYTE out!)
+  BYTE car:
+  SEQ
+    car := 'A'
+    WHILE TRUE
+      SEQ
+        out ! car
+        
+        IF
+          car = 'Z'
+            car := 'A'
+          TRUE
+            car := car + 1
+:
+
+PROC intermediario (CHAN OF BYTE in?, CHAN OF BYTE out!)
+  BYTE car:
+  WHILE TRUE
+    SEQ
+      in ? car   
+      out ! car  
+:
+
+PROC consumidor (CHAN OF BYTE in?, CHAN OF BYTE stdout!)
+  BYTE car:
+  WHILE TRUE
+    SEQ
+      in ? car       
+      stdout ! car  
+:
+
+PROC main (CHAN OF BYTE stdout!)
+  -- Definição dos canais internos que conectam os processos
+  CHAN OF BYTE prod.para.intermed:
+  CHAN OF BYTE intermed.para.cons:
+  
+  PAR
+    produtor (prod.para.intermed!)
+    intermediario (prod.para.intermed?, intermed.para.cons!)
+    consumidor (intermed.para.cons?, stdout!)
+:

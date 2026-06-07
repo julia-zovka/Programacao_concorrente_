@@ -1,0 +1,63 @@
+
+PROC produtor (VAL BYTE id, CHAN OF BYTE out!)
+    BYTE car:
+    SEQ
+    car := id  -- (letra ou num- cad produtor)
+    WHILE TRUE
+        SEQ
+        out ! car
+        -- Rotaciona os caracteres visíveis
+        IF
+            car = 'Z'
+                car := 'A'
+            TRUE
+                car := car + 1
+:
+
+PROC intermediario (CHAN OF BYTE in1?, CHAN OF BYTE in2?, CHAN OF BYTE out!)
+    BYTE car:
+    WHILE TRUE
+        ALT
+            in1 ? car
+            SEQ
+                out ! '1'  --  origem
+                out ! ':'
+                out ! car 
+                
+            in2 ? car
+            SEQ
+                out ! '2' 
+                out ! ':'
+                out ! car 
+:
+
+
+PROC consumidor (CHAN OF BYTE in?, CHAN OF BYTE stdout!)
+    BYTE car:
+    BYTE origem:
+    BYTE sep:
+
+    WHILE TRUE
+    SEQ
+        in ? origem
+        in? sep
+        in ? car
+
+        stdout ! origem
+        stdout ! separador
+        stdout ! car
+        stdout ! '*n'
+:
+
+PROC main (CHAN OF BYTE stdin?, stdout!)
+    CHAN OF BYTE prod.para.intermed:
+    CHAN OF BYTE prod.para.intermed2:
+
+    CHAN OF BYTE intermed.para.cons:
+
+    PAR
+    produtor ('A', prod.para.intermed!)
+    produtor ('0', prod.para.intermed2!)
+    intermediario (prod.para.intermed?,prod.para.intermed2?, intermed.para.cons!)
+    consumidor (intermed.para.cons?, stdout!)
+:
